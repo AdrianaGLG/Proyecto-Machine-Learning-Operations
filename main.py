@@ -32,10 +32,10 @@ async def startup():
     global df_parte, proyecto1_crew, proyecto1_movies
     zip_file = 'Datasets.zip'
     with zipfile.ZipFile(zip_file, 'r') as zip_ref:
-        zip_ref.extractall('../')  # indica la direccion para descomprimir
-    df_parte = pd.read_csv('../df_parte.csv')
-    proyecto1_crew = pd.read_csv('../Proyecto1_crew.csv')
-    proyecto1_movies = pd.read_csv('../proyecto1_movies.csv')
+        zip_ref.extractall('../Datasets/')  # indica la direccion para descomprimir
+    df_parte = pd.read_csv('../Datasets/df_parte.csv')
+    proyecto1_crew = pd.read_csv('../Datasets/Proyecto1_crew.csv')
+    proyecto1_movies = pd.read_csv('../Datasets/proyecto1_movies.csv')
 
 def extract_data_from_zip(): # para extraer los archivos comprimidos
     return df_parte, proyecto1_crew, proyecto1_movies
