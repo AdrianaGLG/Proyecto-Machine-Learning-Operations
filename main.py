@@ -515,8 +515,8 @@ def obtener_recomendaciones(similarity_matrix, selected_movie_title):
     recommended_movies = proyecto1_movies.loc[similar_movies_indices, "title"].tolist()
     return recommended_movies
 
-@app.get('/recomendacion/{titulo}')
-def recomendacion(titulo: str) -> List[str]:
+@app.get('/recomendacion/{titulo}', response_model=List[str])
+def recomendacion(titulo: str):
     similarity_matrix = calcular_similitud()
     recommended_movies = obtener_recomendaciones(similarity_matrix, titulo)
     return recommended_movies
