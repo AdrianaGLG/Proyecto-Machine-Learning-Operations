@@ -503,16 +503,16 @@ def obtener_director(nombre_director: str):
 
 # Cálculo de similitud:
 def calcular_similitud():
-    df_parte, _, _ = extract_data_from_zip()
+    _, _, proyecto1_movies = extract_data_from_zip()
     tfidf = TfidfVectorizer()
     overview_features = tfidf.fit_transform(df_parte["overview"].astype(str))
     similarity_matrix = cosine_similarity(overview_features)
     return similarity_matrix
 
 def obtener_recomendaciones(similarity_matrix, selected_movie_title):
-    selected_movie_index = df_parte.index[df_parte["title"].str.lower() == selected_movie_title.lower()][0]
+    selected_movie_index = proyecto1_movies.index[proyecto1_movies["title"].str.lower() == selected_movie_title.lower()][0]
     similar_movies_indices = similarity_matrix[selected_movie_index].argsort()[::-1][1:6]
-    recommended_movies = df_parte.loc[similar_movies_indices, "title"].tolist()
+    recommended_movies = proyecto1_movies.loc[similar_movies_indices, "title"].tolist()
     return recommended_movies
 
 @app.get('/recomendacion/{titulo}')
